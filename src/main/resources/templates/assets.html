@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assets</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>AssetTrack</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/assets">Assets</a>
+    <a href="/employees">Employees</a>
+    <a href="/assignments">Assignments</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+    <h1>Assets</h1>
+
+    <div class="form-box">
+
+        <form action="/saveAsset" method="post">
+
+            <input type="text" name="assetCode" placeholder="Asset Code">
+
+            <input type="text" name="assetName" placeholder="Asset Name">
+
+            <input type="text" name="brand" placeholder="Brand">
+
+            <input type="text" name="category" placeholder="Category">
+
+            <button type="submit">Save Asset</button>
+
+        </form>
+
+    </div>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="asset : ${assets}">
+            <td th:text="${asset.id}"></td>
+            <td th:text="${asset.assetCode}"></td>
+            <td th:text="${asset.assetName}"></td>
+            <td th:text="${asset.brand}"></td>
+            <td th:text="${asset.category}"></td>
+            <td th:text="${asset.status}"></td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

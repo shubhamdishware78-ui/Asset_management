@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AssetTrack Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>💻 AssetTrack</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/assets">Assets</a>
+    <a href="/employees">Employees</a>
+    <a href="/assignments">Assignments</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+    <h1>Asset Management Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Assets</h3>
+            <h1 th:text="${totalAssets}">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Employees</h3>
+            <h1 th:text="${totalEmployees}">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Assignments</h3>
+            <h1 th:text="${totalAssignments}">0</h1>
+        </div>
+
+        <div class="card">
+            <h3>Status</h3>
+            <h1>ACTIVE</h1>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

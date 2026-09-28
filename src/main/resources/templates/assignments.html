@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assignments</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+    <h2>💻 AssetTrack</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/assets">Assets</a>
+    <a href="/employees">Employees</a>
+    <a href="/assignments">Assignments</a>
+    <a href="/logout">Logout</a>
+
+</div>
+
+<div class="main">
+
+    <h1>Asset Assignment</h1>
+
+    <div th:if="${errorMessage}"
+         style="background:#ffdddd;
+                color:red;
+                padding:10px;
+                margin-bottom:15px;
+                border:1px solid red;
+                border-radius:5px;">
+
+        <span th:text="${errorMessage}"></span>
+
+    </div>
+
+    <div class="form-box">
+
+        <form action="/saveAssignment" method="post">
+
+            <select name="assetCode" required>
+
+                <option value="">Select Asset</option>
+
+                <option
+                        th:each="asset : ${assets}"
+                        th:value="${asset.assetCode}"
+                        th:text="${asset.assetName}">
+                </option>
+
+            </select>
+
+            <select name="employeeCode" required>
+
+                <option value="">Select Employee</option>
+
+                <option
+                        th:each="employee : ${employees}"
+                        th:value="${employee.employeeCode}"
+                        th:text="${employee.employeeName}">
+                </option>
+
+            </select>
+
+            <input type="date"
+                   name="assignDate"
+                   required>
+
+            <button type="submit">
+                Assign Asset
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="form-box">
+
+        <h2>Assignment List</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Asset Code</th>
+                <th>Employee Code</th>
+                <th>Assign Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="assignment : ${assignments}">
+
+                <td th:text="${assignment.id}"></td>
+
+                <td th:text="${assignment.assetCode}"></td>
+
+                <td th:text="${assignment.employeeCode}"></td>
+
+                <td th:text="${assignment.assignDate}"></td>
+
+                <td th:text="${assignment.status}"></td>
+
+                <td>
+
+                    <a th:if="${assignment.status == 'ASSIGNED'}"
+                       th:href="@{/returnAssignment/{id}(id=${assignment.id})}">
+                        Return
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
